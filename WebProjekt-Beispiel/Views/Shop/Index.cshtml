@@ -1,0 +1,56 @@
+﻿@using WebProjekt_Beispiel.Models
+@model List<Article>
+
+@{ 
+    ViewData["Title"] = "Index";
+}
+
+@* 
+    die Variabel Model wird automatisch von ASP.NET Core erzeugt
+    sie beinhaltet in diesem Beispiel eine List<Article>
+*@
+@if ((Model == null || Model.Count == 0))
+{
+    <p>
+        Es sind keine Artikel im Shop vorhanden.
+    </p>
+}
+else
+{
+    // alle Artikel in Tabellenform ausgeben
+<table>
+    <thead>
+        <tr>
+            <td colspan=5>
+                Shopartikel
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Artikel-ID</td>
+            <td>Name</td>
+            <td>Beschreibung</td>
+            <td>Erscheinungsdatum</td>
+            <td>Preis</td>
+        </tr>
+        @foreach (Article a in Model)
+        {
+        <tr>
+            <td>@a.ArticleId</td>
+            <td>@a.Articlename</td>
+            <td>@a.Description</td>
+            <td>@a.ReleaseDate</td>
+            <td>@a.Price</td>
+        </tr>
+        }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan=5>
+                    alle Artikel unseres Shops
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
